@@ -1,0 +1,1016 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Contact Cards CSS Variables for Easy Customization - DISABLED FOR TESTING */
+/* :root {
+  /* Contact Card Colors */
+  /* --contact-card-bg: oklch(0.205 0 0);
+  --contact-card-bg-hover: oklch(0.269 0 0);
+  --contact-card-border: oklch(1 0 0 / 10%);
+  --contact-card-border-hover: oklch(1 0 0 / 15%);
+  --contact-card-shadow: oklch(0 0 0 / 20%);
+  
+  /* Contact Card Text */
+  /* --contact-card-title: oklch(0.985 0 0);
+  --contact-card-subtitle: oklch(0.708 0 0);
+  
+  /* Contact Card Icon Colors */
+  /* --contact-icon-email: oklch(0.577 0.245 27.325);
+  --contact-icon-whatsapp: oklch(0.646 0.222 41.116);
+  --contact-icon-facebook: oklch(0.627 0.265 303.9);
+  --contact-icon-linkedin: oklch(0.696 0.17 162.48);
+  
+  /* Contact Card Spacing */
+  /* --contact-card-padding: 1.25rem;
+  --contact-card-gap: 1rem;
+  --contact-card-radius: 0.75rem;
+  --contact-icon-size: 3rem;
+  --contact-icon-radius: 0.5rem;
+  
+  /* Contact Card Typography */
+  /* --contact-title-size: 1rem;
+  --contact-title-weight: 600;
+  --contact-subtitle-size: 0.875rem;
+  --contact-subtitle-weight: 400;
+  --contact-title-spacing: 0.125rem;
+} */
+
+/* Light theme overrides - DISABLED FOR TESTING */
+/* @media (prefers-color-scheme: light) {
+  :root {
+    --contact-card-bg: oklch(0.97 0 0);
+    --contact-card-bg-hover: oklch(0.985 0 0);
+    --contact-card-border: oklch(0.922 0 0);
+    --contact-card-border-hover: oklch(0.708 0 0);
+    --contact-card-shadow: oklch(0 0 0 / 10%);
+    --contact-card-title: oklch(0.145 0 0);
+    --contact-card-subtitle: oklch(0.556 0 0);
+  }
+} */
+
+/* RTL and Arabic Support */
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Arabic Typography Enhancements */
+.font-arabic {
+  font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.font-english {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* RTL-specific fixes */
+.rtl .ml-auto {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.rtl .mr-auto {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.rtl .pl-4 {
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+.rtl .pr-4 {
+  padding-left: 1rem;
+  padding-right: 0;
+}
+
+.rtl .border-l-4 {
+  border-right-width: 4px;
+  border-left-width: 0;
+}
+
+.rtl .border-r-4 {
+  border-left-width: 4px;
+  border-right-width: 0;
+}
+
+/* Input RTL fixes */
+.rtl input[type="text"],
+.rtl input[type="number"],
+.rtl input[type="email"],
+.rtl textarea {
+  text-align: right;
+}
+
+.rtl select {
+  text-align: right;
+}
+
+/* Custom scrollbar for RTL content */
+.rtl ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.rtl ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.rtl ::-webkit-scrollbar-thumb {
+  background: rgba(147, 51, 234, 0.5);
+  border-radius: 4px;
+}
+
+.rtl ::-webkit-scrollbar-thumb:hover {
+  background: rgba(147, 51, 234, 0.7);
+}
+
+/* Arabic text enhancements */
+.arabic-text {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+.arabic-heading {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Responsive RTL adjustments */
+@media (max-width: 768px) {
+  .rtl .text-right {
+    text-align: right !important;
+  }
+  
+  .rtl .text-left {
+    text-align: left !important;
+  }
+}
+
+/* Form elements RTL styling */
+.rtl .form-label {
+  text-align: right;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.rtl .form-input {
+  direction: rtl;
+  text-align: right;
+}
+
+.rtl .select-wrapper select {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Button RTL fixes */
+.rtl .btn {
+  direction: rtl;
+}
+
+.rtl .btn i {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Card RTL fixes */
+.rtl .card {
+  direction: rtl;
+}
+
+.rtl .card-body {
+  text-align: right;
+}
+
+/* Table RTL fixes */
+.rtl table {
+  direction: rtl;
+}
+
+.rtl th,
+.rtl td {
+  text-align: right;
+}
+
+.rtl th:first-child,
+.rtl td:first-child {
+  text-align: right;
+}
+
+/* Navigation RTL fixes */
+.rtl .nav-item {
+  direction: rtl;
+}
+
+.rtl .dropdown-menu {
+  direction: rtl;
+  text-align: right;
+  right: 0;
+  left: auto;
+}
+
+/* Utility classes for RTL switching */
+.force-rtl {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+.force-ltr {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Arabic number formatting */
+.arabic-numbers {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-variant-numeric: arabic-indic;
+}
+
+/* Enhanced Arabic typography */
+.arabic-content {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  font-weight: 400;
+  color: #e2e8f0;
+  text-align: right;
+}
+
+.arabic-content h1,
+.arabic-content h2,
+.arabic-content h3,
+.arabic-content h4,
+.arabic-content h5,
+.arabic-content h6 {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.arabic-content p {
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.arabic-content ul,
+.arabic-content ol {
+  margin-right: 1.5rem;
+  margin-left: 0;
+}
+
+.arabic-content li {
+  margin-bottom: 0.5rem;
+  text-align: right;
+}
+
+/* RTL Animation fixes */
+.rtl .animate-slide-right {
+  animation: slideRightRTL 0.3s ease-out;
+}
+
+.rtl .animate-slide-left {
+  animation: slideLeftRTL 0.3s ease-out;
+}
+
+@keyframes slideRightRTL {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideLeftRTL {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Print RTL support */
+@media print {
+  .rtl {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  .arabic-content {
+    font-family: 'Noto Sans Arabic', sans-serif;
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  /* Reduce motion for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Optimize images for mobile */
+  img {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+    loading: lazy;
+  }
+
+  /* Optimize text rendering */
+  body {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-variant-ligatures: none;
+  }
+
+  /* Reduce paint complexity */
+  .bg-gradient-to-br {
+    background-attachment: fixed;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Optimize animations */
+  .motion-safe {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  /* Prevent layout shifts */
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* Optimize touch targets */
+  button, 
+  .btn, 
+  input, 
+  select, 
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Improve scrolling performance */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
+
+  /* Optimize card rendering */
+  .card {
+    contain: layout style paint;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Reduce shadow blur for performance */
+  .shadow-lg {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  }
+
+  /* Optimize background animations */
+  .animate-pulse {
+    animation-duration: 2s;
+  }
+
+  /* Prevent white blocks during navigation */
+  .page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0f172a;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .page-transition.active {
+    opacity: 1;
+  }
+
+  /* Smooth page transitions */
+  .smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Optimize scrolling containers */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
+
+  /* Prevent flickering during scroll */
+  .scroll-optimized {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Better mobile animations */
+  .mobile-animate {
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+  }
+
+  /* Reduce complex animations on mobile */
+  .complex-animation {
+    animation: none !important;
+  }
+
+  /* Optimize hover effects */
+  .hover-effect {
+    transition: all 0.2s ease;
+  }
+
+  /* Prevent text overflow */
+  .text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Better mobile typography */
+  .mobile-text {
+    line-height: 1.5;
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Enhanced Mobile Experience */
+@media (max-width: 640px) {
+  /* Improve touch interactions */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  /* Optimize form inputs */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Better mobile text rendering */
+  h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Optimize spacing for mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Improve mobile navigation */
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Mobile-first image optimization */
+  .responsive-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Optimize mobile cards */
+  .mobile-card {
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  /* Better mobile typography */
+  .mobile-text {
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  /* Mobile button optimization */
+  .mobile-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  /* Optimize mobile forms */
+  .mobile-form {
+    padding: 1rem;
+  }
+
+  .mobile-form input,
+  .mobile-form textarea,
+  .mobile-form select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Ultra-mobile optimization (very small screens) */
+@media (max-width: 480px) {
+  /* Further optimize for very small screens */
+  .text-xs {
+    font-size: 0.75rem;
+  }
+
+  .text-sm {
+    font-size: 0.875rem;
+  }
+
+  /* Reduce padding on small screens */
+  .p-4 {
+    padding: 1rem;
+  }
+
+  .p-6 {
+    padding: 1.5rem;
+  }
+
+  /* Optimize hero sections */
+  .mobile-hero {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .mobile-hero h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  /* Better mobile spacing */
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+}
+
+/* Performance optimizations for all devices */
+.performance-optimized {
+  contain: layout style paint;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Image loading optimization */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}
+
+/* Preload critical resources */
+.critical-resource {
+  fetchpriority: high;
+}
+
+/* Defer non-critical resources */
+.defer-resource {
+  fetchpriority: low;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent text selection during interactions */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Better focus states for accessibility */
+:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Additional mobile performance optimizations */
+@media (max-width: 768px) {
+  /* Hardware acceleration for smooth animations */
+  .hardware-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+  }
+
+  /* Optimize for mobile Safari */
+  .safari-optimized {
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+  }
+
+  /* Prevent repaints during scrolling */
+  .scroll-stable {
+    transform: translateZ(0);
+    will-change: scroll-position;
+  }
+
+  /* Better mobile image handling */
+  .mobile-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  /* Optimize mobile navigation */
+  .mobile-nav-optimized {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Smooth mobile transitions */
+  .mobile-transition {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-property: opacity, transform;
+  }
+
+  /* Prevent mobile flickering */
+  .no-flicker {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  /* Optimize mobile buttons */
+  .mobile-button {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Better mobile scrolling */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+    overflow-y: auto;
+    transform: translateZ(0);
+    will-change: scroll-position;
+  }
+
+  /* Optimize mobile cards */
+  .mobile-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Prevent mobile layout shifts */
+  .mobile-layout-stable {
+    position: relative;
+    min-height: 1px;
+  }
+
+  /* Optimize mobile text */
+  .mobile-text-optimized {
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Better mobile form inputs */
+  .mobile-input {
+    font-size: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Mobile dropdown optimization */
+  .mobile-dropdown {
+    position: relative;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .mobile-dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-top: 4px;
+    z-index: 1000;
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    transform-origin: top center;
+  }
+
+  .mobile-dropdown.active .mobile-dropdown-content {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Optimize mobile animations */
+  .mobile-animation {
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
+  /* Prevent mobile white screens */
+  .mobile-screen {
+    background: #0f172a;
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Better mobile loading states */
+  .mobile-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transform: translateZ(0);
+    will-change: opacity;
+  }
+
+  /* Optimize mobile modals */
+  .mobile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
+  .mobile-modal-content {
+    background: rgba(30, 41, 59, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .mobile-modal.active .mobile-modal-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
