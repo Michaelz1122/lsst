@@ -1,0 +1,39 @@
+<!-- Optimized robots.txt for Vercel deployment -->
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://your-app-name.vercel.app/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Block common bot paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
+Disallow: *.json$
+Disallow: *.js$
+Disallow: *.css$
+
+# Allow specific static assets
+Allow: /_next/static/
+Allow: /static/
+Allow: *.css$
+Allow: *.js$
+Allow: *.png$
+Allow: *.jpg$
+Allow: *.jpeg$
+Allow: *.gif$
+Allow: *.svg$
+Allow: *.webp$
+Allow: *.ico$
+
+# Block admin areas from search engines
+Disallow: /admin/*
+Disallow: /api/admin/*
+
+# Environment-specific blocks (uncomment for production)
+# Disallow: /dev/
+# Disallow: /staging/

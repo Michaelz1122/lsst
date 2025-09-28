@@ -1,0 +1,215 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Admin User
+model Admin {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  password      String
+  name          String
+  role          String   @default("admin")
+  isActive      Boolean  @default(true)
+  lastLoginAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@map("admins")
+}
+
+// Content Management
+model Content {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  title       String
+  content     String   // Rich text content
+  type        String   // 'text', 'html', 'json'
+  page        String?  // Page identifier
+  section     String?  // Section identifier
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("content")
+}
+
+// Page Templates
+model PageTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  thumbnail   String?
+  content     String   // JSON template structure
+  category    String   @default("general")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("page_templates")
+}
+
+// SEO Management
+model SEO {
+  id          String   @id @default(cuid())
+  pageId      String?  // Reference to page or landing page
+  pageType    String   // 'page', 'landing_page', 'blog'
+  title       String?
+  description String?
+  keywords    String?
+  ogTitle     String?
+  ogDescription String?
+  ogImage     String?
+  canonical   String?
+  robots      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("seo")
+}
+
+// Theme & Style Management
+model Theme {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  isActive    Boolean  @default(false)
+  settings    String   // JSON theme settings
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("themes")
+}
+
+
+
+// Pages Management
+model Page {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String   // JSON content for block-based editor
+  seoTitle    String?
+  seoDescription String?
+  seoKeywords String?
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("pages")
+}
+
+// Landing Pages
+model LandingPage {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String   // JSON content for drag-and-drop builder
+  seoTitle    String?
+  seoDescription String?
+  seoKeywords String?
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("landing_pages")
+}
+
+// AI Tools
+model AITool {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  inputFields String   // JSON schema for input fields
+  prompt      String
+  llmSettings String   // JSON for LLM settings (model, temperature, etc.)
+  testInterface String // JSON for test interface configuration
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Prompt history versions
+  promptVersions PromptVersion[]
+  
+  @@map("ai_tools")
+}
+
+// Prompt Version History
+model PromptVersion {
+  id        String   @id @default(cuid())
+  version   Int
+  prompt    String
+  notes     String?
+  createdAt DateTime @default(now())
+  
+  toolId    String
+  tool      AITool   @relation(fields: [toolId], references: [id], onDelete: Cascade)
+  
+  @@unique([toolId, version])
+  @@map("prompt_versions")
+}
+
+// Scripts & Pixels
+model Script {
+  id          String   @id @default(cuid())
+  name        String
+  code        String
+  type        String   // 'pixel', 'analytics', 'custom'
+  placement   String   // 'head', 'body_start', 'body_end'
+  isGlobal    Boolean  @default(true)
+  pageId      String?  // null if global
+  conditions  String?  // JSON for conditional rules
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("scripts")
+}
+
+// Settings
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   // JSON value
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("settings")
+}
+
+// Assets (Images, Files)
+model Asset {
+  id          String   @id @default(cuid())
+  name        String
+  filename    String
+  originalName String
+  mimeType    String
+  size        Int
+  path        String
+  url         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("assets")
+}
+
+// Security Logs
+model SecurityLog {
+  id        String   @id @default(cuid())
+  level     String   // 'info', 'warning', 'error', 'success'
+  message   String
+  user      String
+  ip        String
+  action    String
+  metadata  String?  // JSON for additional data
+  createdAt DateTime @default(now())
+  
+  @@map("security_logs")
+}
